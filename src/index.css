@@ -1,0 +1,35 @@
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap");
+
+:root {
+  font-family: "Ubuntu", sans-serif;
+
+  --neon-blue: #3e5fffff;
+  --alice-blue: #f3f7fcff;
+  --light-grey: #969696;
+  --onyx: #383c43ff;
+  --white: #ffffffff;
+  --chili-red: #e02f1fff;
+  --earth-yellow: #ffbe70ff;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  scroll-behavior: smooth;
+}
+
+::-webkit-scrollbar {
+  width: 0.75rem;
+}
+
+::-webkit-scrollbar-track {
+  background-color: var(--alice-blue);
+  border: 1px solid var(--light-grey);
+  border-width: 0 0 0 1px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--light-grey);
+  background-clip: content-box;
+}

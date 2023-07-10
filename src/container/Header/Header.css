@@ -1,0 +1,137 @@
+.app__navbar {
+  width: 100%;
+  /* Same height for the logo image */
+  height: 65px;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  flex-direction: row;
+  background-color: var(--white);
+  position: relative;
+  border-bottom: 1px solid rgba(200, 200, 200, 0.8);
+  user-select: none;
+
+  transition: background-color 0.25s ease-out;
+}
+
+.app__navbar-icon {
+  display: flex;
+  margin-left: 2rem;
+  align-items: center;
+  cursor: pointer;
+  user-select: none;
+  height: 100%;
+}
+
+.app__navbar-links {
+  display: flex;
+  padding-left: 2rem;
+  gap: 1rem;
+  align-items: center;
+  justify-content: flex-start;
+  /* background-color: red; */
+  width: 100%;
+  height: 100%;
+}
+
+.app__navbar-account {
+  height: 100%;
+  width: 100%;
+  padding-right: 2rem;
+  margin-right: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  /* background-color: chocolate; */
+  gap: 1rem;
+}
+
+.app__navbar-links > button,
+.app__navbar-account > button {
+  cursor: pointer;
+  color: var(--onyx);
+  font-weight: 400;
+  font-family: "Ubuntu";
+  font-size: 0.9rem;
+  border-width: 0px;
+  background-color: rgba(200, 200, 200, 0);
+
+  transition: color 0.25s ease;
+}
+
+.app__navbar-links > button:hover,
+.app__navbar-account > button:hover {
+  color: var(--light-grey);
+}
+
+.app__navbar-account > #round {
+  background-color: var(--chili-red);
+  color: white;
+  font-weight: 600;
+  padding: 0.6rem 1.5rem;
+  border-radius: 40px;
+
+  transition: opacity 0.25s ease;
+}
+
+.app__navbar-account > #round:hover {
+  opacity: 0.85;
+}
+
+.app__navbar-hamburger {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.app__navbar-mobile-menu {
+  width: 100%;
+  position: fixed;
+  background-color: var(--white);
+  flex-direction: column;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 75%;
+  flex-wrap: wrap;
+  z-index: 999;
+  padding: 1rem;
+  gap: 1rem;
+
+  border: 1px solid var(--light-grey);
+  border-width: 0 0 1px 0;
+
+  transition: background-color 0.25s ease;
+}
+
+.app__navbar-mobile-menu:hover {
+  color: var(--light-grey);
+}
+
+.app__navbar-mobile-menu > #round {
+  background-color: var(--chili-red);
+  color: white;
+  font-weight: 600;
+  padding: 0.6rem 1.5rem;
+  border-radius: 40px;
+
+  transition: opacity 0.25s ease;
+}
+
+.app__navbar-mobile-menu > #round:hover {
+  opacity: 0.85;
+}
+
+.app__navbar-mobile-menu > button {
+  cursor: pointer;
+  color: var(--onyx);
+  font-weight: 400;
+  font-family: "Ubuntu";
+  font-size: 0.9rem;
+  border-width: 0px;
+  background-color: rgba(200, 200, 200, 0);
+
+  transition: background-color 0.25s ease;
+}
