@@ -29,6 +29,8 @@ const Home = () => {
   const [companyEmail, setCompanyEmail] = useState("");
   const [message, setMessage] = useState("");
 
+  const [buttonMessage, setButtonMessage] = useState("Contactează-ne");
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -49,6 +51,8 @@ const Home = () => {
         setCompanyEmail("");
         setMessage("");
       });
+
+    setButtonMessage("Succes!");
   };
 
   return (
@@ -208,6 +212,7 @@ const Home = () => {
           alignItems: "center",
           height: "100%",
           width: "100%",
+          minHeight: "100vh",
           flexDirection: "column",
           marginBottom: "5rem",
         }}
@@ -252,7 +257,7 @@ const Home = () => {
               ></textarea>
             </div>
             <button onClick={handleSubmit} className="form-submit-btn">
-              Contactează-ne
+              {buttonMessage}
             </button>
           </form>
         </div>
