@@ -7,6 +7,7 @@ import hamburgerDark from "../assets/hamburger-dark.png";
 import tickLight from "../assets/tick-light.png";
 import tickDark from "../assets/tick-dark.png";
 import laptop from "../assets/laptop.png";
+import laptopDark from "../assets/laptop-dark.png";
 import automation from "../assets/customisation.jpg";
 import automationIcon from "../assets/gear.png";
 import cloudIcon from "../assets/cloud.png";
@@ -14,6 +15,7 @@ import supportIcon from "../assets/support.png";
 import fastIcon from "../assets/fast.png";
 import call from "../assets/call.png";
 import linkedIn from "../assets/linkedin.png";
+import email from "../assets/email.png";
 import implementation from "../assets/implementation.jpg";
 
 export default {
@@ -34,4 +36,6 @@ export default {
   supportIcon,
   call,
   implementation,
+  email,
+  laptopDark,
 };

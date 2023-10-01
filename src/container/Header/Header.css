@@ -1,6 +1,5 @@
 .app__navbar {
   width: 100%;
-  /* Same height for the logo image */
   height: 65px;
   display: flex;
   align-items: center;
@@ -26,13 +25,68 @@
 .app__navbar-links {
   display: flex;
   padding-left: 2rem;
-  gap: 1rem;
+  gap: 1.75rem;
   align-items: center;
   justify-content: flex-start;
-  /* background-color: red; */
   width: 100%;
   height: 100%;
 }
+
+.app__navbar-link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.navbar-button {
+  position: relative;
+  cursor: pointer;
+  color: var(--onyx);
+  font-weight: 600;
+  font-family: "Ubuntu";
+  font-size: 0.9rem;
+  border: none;
+  background-color: rgba(200, 200, 200, 0);
+  transition: color 0.25s ease;
+}
+
+.navbar-button:hover {
+  color: var(--neon-blue);
+}
+
+.dot {
+  position: absolute;
+  bottom: 1.25rem;
+  left: 50%;
+  transform: translateX(-50%) scale(0);
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: transparent;
+  transition: background-color 0.25s ease, transform 0.25s ease, border-radius 0.25s ease;
+}
+
+.navbar-button:hover .dot {
+  background-color: var(--neon-blue);
+  transform: translateX(-50%) scale(1);
+  transition: transform 0.5 ease, border-radius 0.25s ease;
+  animation: elongate 0.5s ease forwards 0.25s;
+}
+
+@keyframes elongate {
+  from {
+    transform: translateX(-50%) scaleX(1) scaleY(1);
+    border-radius: 50%; /* Start with a circular shape */
+  }
+  to {
+    transform: translateX(-50%) scaleX(4) scaleY(0.5); /* Shrink vertically (adjust scaleY value as needed) */
+    border-radius: 25%; /* Transition to a more square shape */
+  }
+}
+
+
+
+
 
 .app__navbar-account {
   height: 100%;
@@ -42,11 +96,10 @@
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  /* background-color: chocolate; */
   gap: 1rem;
 }
 
-.app__navbar-links > button,
+.app__navbar-links > .app__navbar-link > button,
 .app__navbar-account > button {
   cursor: pointer;
   color: var(--onyx);
@@ -59,10 +112,15 @@
   transition: color 0.25s ease;
 }
 
-.app__navbar-links > button:hover,
-.app__navbar-account > button:hover {
-  color: var(--light-grey);
+.app__navbar-links > .app__navbar-link > button {
+  font-weight: 500;
 }
+
+.app__navbar-links > .app__navbar-link > button:hover,
+.app__navbar-account > button:hover {
+  color: var(--neon-blue);
+}
+
 
 .app__navbar-account > #round {
   background-color: var(--chili-red);
@@ -126,8 +184,8 @@
 
 .app__navbar-mobile-menu > button {
   cursor: pointer;
-  color: var(--onyx);
-  font-weight: 400;
+  color: var(--neon-blue);
+  font-weight: 600;
   font-family: "Ubuntu";
   font-size: 0.9rem;
   border-width: 0px;

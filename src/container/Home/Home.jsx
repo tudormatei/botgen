@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { motion } from "framer-motion";
 import { useMediaQuery } from "@mui/material";
-import axios from "axios";
 
 import { images } from "../../constants";
 import "./Home.css";
@@ -31,6 +30,12 @@ const Home = () => {
 
   const [buttonMessage, setButtonMessage] = useState("Contactează-ne");
 
+  const [emptyFields, setEmptyFields] = useState({
+    CompanyName: "",
+    CompanyEmail: "",
+    Message: "",
+  });
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -40,19 +45,49 @@ const Home = () => {
       Message: message,
     };
 
-    axios
-      .post(
-        "https://sheet.best/api/sheets/4a5ff438-1cbc-4ef5-b2da-a56d822fd4d7",
-        data
-      )
+    if (
+      data.CompanyEmail === "" ||
+      data.CompanyName === "" ||
+      data.Message === ""
+    ) {
+      setEmptyFields({
+        CompanyName: data.CompanyName === "" ? "CompanyName" : "",
+        CompanyEmail: data.CompanyEmail === "" ? "CompanyEmail" : "",
+        Message: data.Message === "" ? "Message" : "",
+      });
+
+      return;
+    }
+
+    const formData = new FormData();
+
+    for (const key in data) {
+      formData.append(key, data[key]);
+    }
+
+    fetch(
+      "https://script.google.com/macros/s/AKfycbyrJvk5sJ91nj7IZm8koZH0iVLxv27-Bj1mj2gOFSecXil3ENuB-2yY-Mcn628CmAyWKQ/exec",
+      {
+        method: "POST",
+        body: formData,
+      }
+    )
       .then((response) => {
         console.log(response);
         setCompanyName("");
         setCompanyEmail("");
         setMessage("");
+      })
+      .catch((error) => {
+        console.error(error);
       });
 
-    setButtonMessage("Succes!");
+    setEmptyFields({
+      CompanyName: "",
+      CompanyEmail: "",
+      Message: "",
+    });
+    setButtonMessage("Success!");
   };
 
   return (
@@ -85,7 +120,11 @@ const Home = () => {
           </div>
         </div>
         <div className="app__home-head-img">
-          <img src={images.laptop} alt="img" />
+          {mode === "light" ? (
+            <img src={images.laptop} alt="audio-insight-logo" />
+          ) : (
+            <img src={images.laptopDark} alt="audio-insight-logo" />
+          )}
         </div>
       </div>
       <div className="app__home-body-automation" id="servicii">
@@ -135,7 +174,7 @@ const Home = () => {
           <h1>Chatbot-uri integrate rapid în afacerea ta!</h1>
           <br />
           <p>
-            implementarea chatbot-ului tău devine ușoară și rapidă. Doar 2 linii
+            Implementarea chatbot-ului tău devine ușoară și rapidă. Doar 2 linii
             de cod sunt suficiente pentru a avea chatbot-ul tău funcțional și
             pregătit să interacționeze pe website-ul tău. Beneficiază de
             avantajele unei implementări rapide cu chatbot-uri de la{" "}
@@ -224,6 +263,18 @@ const Home = () => {
           <form className="form">
             <div className="form-group">
               <label for="email">Numele companiei</label>
+              {emptyFields.CompanyName && (
+                <span
+                  style={{
+                    color: "var(--chili-red)",
+                    marginBottom: ".5rem",
+                    fontSize: ".7rem",
+                  }}
+                  className="error"
+                >
+                  Vă rugăm completați numele companiei.
+                </span>
+              )}
               <input
                 onChange={(e) => setCompanyName(e.target.value)}
                 value={companyName}
@@ -235,6 +286,18 @@ const Home = () => {
             </div>
             <div className="form-group">
               <label for="email">Email-ul companiei</label>
+              {emptyFields.CompanyEmail && (
+                <span
+                  style={{
+                    color: "var(--chili-red)",
+                    marginBottom: ".5rem",
+                    fontSize: ".7rem",
+                  }}
+                  className="error"
+                >
+                  Vă rugăm completați email-ul companiei.
+                </span>
+              )}
               <input
                 onChange={(e) => setCompanyEmail(e.target.value)}
                 value={companyEmail}
@@ -246,6 +309,18 @@ const Home = () => {
             </div>
             <div className="form-group">
               <label for="textarea">Cum vă putem ajuta?</label>
+              {emptyFields.Message && (
+                <span
+                  style={{
+                    color: "var(--chili-red)",
+                    marginBottom: ".5rem",
+                    fontSize: ".7rem",
+                  }}
+                  className="error"
+                >
+                  Vă rugăm completați mesajul.
+                </span>
+              )}
               <textarea
                 onChange={(e) => setMessage(e.target.value)}
                 value={message}
